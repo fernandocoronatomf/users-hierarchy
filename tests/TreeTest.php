@@ -20,6 +20,7 @@ class TreeTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+
         $roles = [
             [
                 'Id' => 1,
@@ -47,11 +48,6 @@ class TreeTest extends TestCase
                 'Parent' => 3,
             ]
         ];
-
-        $this->roleRepository = new RoleRepository(new RoleCollection);
-        foreach ($roles as $role) {
-            $this->roleRepository->save($role);
-        }
 
         $users = [
             [
@@ -81,20 +77,19 @@ class TreeTest extends TestCase
             ]
         ];
 
+        $this->roleRepository = new RoleRepository(new RoleCollection);
+        $this->roleRepository->saveAll($roles);
+
         $this->userRepo = new UserRepository(new UserCollection);
-        foreach ($users as $user) {
-            $this->userRepo->save($user);
-        }
+        $this->userRepo->saveAll($users);
     }
 
     /** @test */
-    public function it_should_return_2_children_roles()
+    public function it_should_return_2_subordinate_users()
     {
         $adaptor = new RecursiveTreeAdaptor($this->roleRepository, $this->userRepo);
 
-        $users = $this->userRepo->getAll();
-
-        $childrenRoles = $this->userRepo->getSubOrdinates($adaptor, $users[3]);
+        $childrenRoles = $this->userRepo->getSubOrdinates($adaptor, 3);
 
         $this->assertCount(
             2,
@@ -107,9 +102,7 @@ class TreeTest extends TestCase
     {
         $adaptor = new RecursiveTreeAdaptor($this->roleRepository, $this->userRepo);
 
-        $users = $this->userRepo->getAll();
-
-        $users = $this->userRepo->getSubOrdinates($adaptor, $users[1]);
+        $users = $this->userRepo->getSubOrdinates($adaptor, 1);
 
         $this->assertCount(
             4,

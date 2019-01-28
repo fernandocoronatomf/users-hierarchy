@@ -8,5 +8,5 @@ use UserHierarchy\Services\Tree\AdaptorInterface;
 
 interface UserHierarchyInterface
 {
-    public function getSubOrdinates(AdaptorInterface $adaptor, array $user): array;
+    public function getSubOrdinates(AdaptorInterface $adaptor, int $userId): array;
 }

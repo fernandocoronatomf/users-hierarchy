@@ -6,34 +6,13 @@ namespace UserHierarchy\Repository;
 
 use UserHierarchy\InMemoryCollection\RoleCollection;
 
-class RoleRepository implements RepositoryInterface
+class RoleRepository extends Repository implements RepositoryInterface
 {
     /** @var RoleCollection $role */
-    private $role;
+    protected $collection;
 
-    public function __construct(RoleCollection $role)
+    public function __construct(RoleCollection $collection)
     {
-        $this->role = $role;
-    }
-
-    public function getAll(): array
-    {
-        return $this->role->all();
-    }
-
-    public function save(array $item): bool
-    {
-        $this->role->offsetSet($item['Id'], $item);
-        return true;
-    }
-
-    public function remove()
-    {
-        // TODO: Implement remove() method.
-    }
-
-    public function update()
-    {
-        // TODO: Implement update() method.
+        $this->collection = $collection;
     }
 }

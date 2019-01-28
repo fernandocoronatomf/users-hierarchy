@@ -7,44 +7,28 @@ namespace UserHierarchy\Repository;
 use UserHierarchy\InMemoryCollection\UserCollection;
 use UserHierarchy\Services\Tree\AdaptorInterface;
 
-class UserRepository implements RepositoryInterface, UserHierarchyInterface
+class UserRepository extends Repository implements RepositoryInterface, UserHierarchyInterface
 {
-    /** @var UserCollection $user */
-    private $user;
+    protected $collection;
 
-    public function __construct(UserCollection $user)
+    /**
+     * UserRepository constructor.
+     * @param UserCollection $collection
+     */
+    public function __construct(UserCollection $collection)
     {
-        $this->user = $user;
-    }
-
-    public function getAll()
-    {
-        return $this->user->all();
-    }
-
-    public function remove()
-    {
-        // TODO: Implement remove() method.
-    }
-
-    public function update()
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function save(array $item): bool
-    {
-        $this->user->offsetSet($item['Id'], $item);
-        return true;
+        $this->collection = $collection;
     }
 
     /**
      * @param AdaptorInterface $adaptor
-     * @param array $user
+     * @param int $userId
      * @return array
+     * @throws \UserHierarchy\InMemoryCollection\EntityNotFoundException
      */
-    public function getSubOrdinates(AdaptorInterface $adaptor, array $user): array
+    public function getSubOrdinates(AdaptorInterface $adaptor, int $userId): array
     {
+        $user = $this->collection->offsetGet($userId);
         return $adaptor->getSubOrdinates($user['Role']);
     }
 }

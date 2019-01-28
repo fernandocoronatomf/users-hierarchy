@@ -22,6 +22,17 @@ class RecursiveTreeAdaptor implements AdaptorInterface
     private $userRepository;
 
     /**
+     * RecursiveAdaptor constructor.
+     * @param RoleRepository $roleRepository
+     * @param UserRepository $userRepository
+     */
+    public function __construct(RoleRepository $roleRepository, UserRepository $userRepository)
+    {
+        $this->roleRepository = $roleRepository;
+        $this->userRepository = $userRepository;
+    }
+
+    /**
      * @param int $parentId
      * @return array
      */
@@ -42,9 +53,9 @@ class RecursiveTreeAdaptor implements AdaptorInterface
         return $tree;
     }
 
-    public function getSubOrdinates(int $parentId): array
+    public function getSubOrdinates(int $roleId): array
     {
-        $tree = $this->buildTree($parentId);
+        $tree = $this->buildTree($roleId);
 
         $roles = $this->getRoleIds($tree);
 
