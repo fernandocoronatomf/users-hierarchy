@@ -1,0 +1,24 @@
+{
+  "name": "deputy/challenge",
+  "description": "Deputy Code Challenge",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Fernando",
+      "email": "fernandocoronatomf@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "UserHierarchy\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7",
+    "mp091689/dump-die": "dev-master"
+  }
+}
