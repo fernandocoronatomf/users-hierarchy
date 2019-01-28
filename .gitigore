@@ -6,4 +6,4 @@ vendor
 coverage.clover
 /phpcs.xml
 /.phpcs-cache
-.idea/
+.idea/*
