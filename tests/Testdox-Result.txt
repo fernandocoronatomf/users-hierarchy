@@ -1,0 +1,21 @@
+Feature\LoopingTreeAdaptor
+ [x] It should return 2 subordinate users
+ [x] It should return 4 subordinate users
+
+Feature\RecursiveTreeAdaptor
+ [x] It should return 2 subordinate users
+ [x] It should return 4 subordinate users
+
+Feature\RoleCollection
+ [x] It adds new roles to role model
+
+UserCollection
+ [x] It returns all users in the collection
+ [x] It returns user by index
+ [x] It fails to find user with wrong index
+ [x] It removes user from collection
+ [x] It fails to remove user that does not exist
+ [x] It fails to add user with no index
+ [x] It fails to remove user if no index is passed
+ [x] It fails to get user with no index
+

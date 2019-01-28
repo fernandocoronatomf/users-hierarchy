@@ -12,7 +12,7 @@
         </whitelist>
     </filter>
     <logging>
-        <!--<log type="testdox-text" target="tests/Testdox-Result.txt"/>-->
+        <log type="testdox-text" target="tests/Testdox-Result.txt"/>
         <log type="coverage-html" target="tests/coverage/html"/>
     </logging>
 </phpunit>

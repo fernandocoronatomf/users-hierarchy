@@ -24,11 +24,17 @@ class UserRepository extends Repository implements RepositoryInterface, UserHier
      * @param AdaptorInterface $adaptor
      * @param int $userId
      * @return array
-     * @throws \UserHierarchy\InMemoryCollection\EntityNotFoundException
      */
     public function getSubOrdinates(AdaptorInterface $adaptor, int $userId): array
     {
-        $user = $this->collection->offsetGet($userId);
-        return $adaptor->getSubOrdinates($user['Role']);
+        $adaptor->buildTree(
+            $this->get($userId)['Role']
+        );
+
+        $subordinateRoles = $adaptor->getTreeIds();
+
+        return array_filter($this->getAll(), function ($user) use ($subordinateRoles) {
+            return in_array($user['Role'], $subordinateRoles);
+        });
     }
 }

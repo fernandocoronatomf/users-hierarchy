@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace UserHierarchy\Services\Tree;
 
-use RecursiveArrayIterator;
-use RecursiveIteratorIterator;
-
-class RecursiveTreeAdaptor implements AdaptorInterface
+class LoopingThroughTreeAdaptor implements AdaptorInterface
 {
     /** @var array $collection */
     private $collection;
@@ -30,31 +27,36 @@ class RecursiveTreeAdaptor implements AdaptorInterface
      */
     public function buildTree(int $parentId)
     {
-        array_walk($this->collection, function ($item) use ($parentId) {
-            if ($item['Parent'] === $parentId) {
-                $item['Children'] = $this->buildTree($item['Id']);
-                $this->tree[] = $item;
-                unset($item);
-            }
-        });
-
+        $this->tree = $this->createNewTree($this->collection, $parentId);
         return $this->tree;
+    }
+
+    private function createNewTree(array $elements, int $parentId)
+    {
+        $branch = [];
+
+        foreach ($elements as $element) {
+            if ($element['Parent'] == $parentId) {
+                $children = $this->createNewTree($elements, $element['Id']);
+                if ($children) {
+                    $element['Children'] = $children;
+                }
+                $branch[] = $element;
+            }
+        }
+
+        return $branch;
     }
 
     public function getTreeIds()
     {
-        return $this->getIds($this->tree);
-    }
-
-    private function getIds($tree)
-    {
-        return $this->recursiveFindByKey($tree, 'Id');
+        return $this->recursiveFindByKey($this->tree, 'Id');
     }
 
     private function recursiveFindByKey(array $array, $needle)
     {
-        $iterator = new RecursiveArrayIterator($array);
-        $recursive = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::SELF_FIRST);
+        $iterator = new \RecursiveArrayIterator($array);
+        $recursive = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::SELF_FIRST);
 
         $list = [];
 

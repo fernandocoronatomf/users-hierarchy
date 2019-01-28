@@ -14,11 +14,26 @@ abstract class Repository
         return $this->collection->all();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function get($id)
+    {
+        return $this->collection->offsetGet($id);
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
     public function remove()
     {
         // TODO: Implement remove() method.
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function update()
     {
         // TODO: Implement update() method.

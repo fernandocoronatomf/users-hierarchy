@@ -6,8 +6,8 @@ use UserHierarchy\InMemoryCollection\RoleCollection;
 use UserHierarchy\InMemoryCollection\UserCollection;
 use UserHierarchy\Repository\RoleRepository;
 use UserHierarchy\Repository\UserRepository;
+use UserHierarchy\Services\Tree\LoopingThroughTreeAdaptor;
 use UserHierarchy\Services\Tree\RecursiveTreeAdaptor;
-
 
 $roles = [
     [
@@ -69,10 +69,30 @@ $users = [
 $roleRepository = new RoleRepository(new RoleCollection);
 $roleRepository->saveAll($roles);
 
+// Add Users
 $userRepository = new UserRepository(new UserCollection);
 $userRepository->saveAll($users);
 
-$adaptor = new RecursiveTreeAdaptor($roleRepository, $userRepository);
-$subordinates = $userRepository->getSubOrdinates($adaptor, 1);
+$tree = new RecursiveTreeAdaptor($roleRepository->getAll());
+$subordinates = $userRepository->getSubOrdinates($tree, 1);
+var_dump(count($subordinates) === 4);
 
-dd($subordinates);
+$tree = new RecursiveTreeAdaptor($roleRepository->getAll());
+$subordinates = $userRepository->getSubOrdinates($tree, 2);
+var_dump(count($subordinates) === 0);
+
+$tree = new RecursiveTreeAdaptor($roleRepository->getAll());
+$subordinates = $userRepository->getSubOrdinates($tree, 3);
+var_dump(count($subordinates) === 2);
+
+$tree = new RecursiveTreeAdaptor($roleRepository->getAll());
+$subordinates = $userRepository->getSubOrdinates($tree, 4);
+var_dump(count($subordinates) === 3);
+
+$tree = new RecursiveTreeAdaptor($roleRepository->getAll());
+$subordinates = $userRepository->getSubOrdinates($tree, 5);
+var_dump(count($subordinates) === 0);
+
+$tree = new LoopingThroughTreeAdaptor($roleRepository->getAll());
+$subordinates = $userRepository->getSubOrdinates($tree, 1);
+var_dump(count($subordinates) === 4);

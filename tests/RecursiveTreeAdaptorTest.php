@@ -9,7 +9,7 @@ use UserHierarchy\Repository\RoleRepository;
 use UserHierarchy\Repository\UserRepository;
 use UserHierarchy\Services\Tree\RecursiveTreeAdaptor;
 
-class TreeTest extends TestCase
+class RecursiveTreeAdaptorTest extends TestCase
 {
     /** @var RoleRepository $repository */
     private $roleRepository;
@@ -87,7 +87,7 @@ class TreeTest extends TestCase
     /** @test */
     public function it_should_return_2_subordinate_users()
     {
-        $adaptor = new RecursiveTreeAdaptor($this->roleRepository, $this->userRepo);
+        $adaptor = new RecursiveTreeAdaptor($this->roleRepository->getAll());
 
         $childrenRoles = $this->userRepo->getSubOrdinates($adaptor, 3);
 
@@ -100,7 +100,7 @@ class TreeTest extends TestCase
     /** @test */
     public function it_should_return_4_subordinate_users()
     {
-        $adaptor = new RecursiveTreeAdaptor($this->roleRepository, $this->userRepo);
+        $adaptor = new RecursiveTreeAdaptor($this->roleRepository->getAll());
 
         $users = $this->userRepo->getSubOrdinates($adaptor, 1);
 
