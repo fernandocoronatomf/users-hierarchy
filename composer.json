@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": ">=7.2",
-    "bluem/tree": "dev-master"
+    "bluem/tree": "~2.0"
   },
   "autoload": {
     "psr-4": {
