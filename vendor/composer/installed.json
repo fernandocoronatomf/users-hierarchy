@@ -1,5 +1,52 @@
 [
     {
+        "name": "bluem/tree",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/BlueM/Tree.git",
+            "reference": "a06932bd2977bdabbfdd010be42d8e54727ef3fb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/BlueM/Tree/zipball/a06932bd2977bdabbfdd010be42d8e54727ef3fb",
+            "reference": "a06932bd2977bdabbfdd010be42d8e54727ef3fb",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.0"
+        },
+        "require-dev": {
+            "doctrine/instantiator": "1.0.*",
+            "phpunit/phpunit": "6.*"
+        },
+        "time": "2018-05-16T17:32:59+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "BlueM\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Carsten Blüm",
+                "email": "carsten@bluem.net"
+            }
+        ],
+        "description": "Library for handling tree structures based on parent IDs, e.g. a self-joined database table",
+        "homepage": "https://github.com/BlueM/Tree",
+        "keywords": [
+            "hierarchical",
+            "tree"
+        ]
+    },
+    {
         "name": "doctrine/instantiator",
         "version": "dev-master",
         "version_normalized": "9999999-dev",

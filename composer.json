@@ -10,11 +10,17 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": ">=7.2"
+    "php": ">=7.2",
+    "bluem/tree": "dev-master"
   },
   "autoload": {
     "psr-4": {
       "UserHierarchy\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
     }
   },
   "require-dev": {

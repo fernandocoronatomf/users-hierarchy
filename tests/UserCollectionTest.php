@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use http\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use UserHierarchy\InMemoryCollection\EntityNotFoundException;
 use UserHierarchy\InMemoryCollection\UserCollection;

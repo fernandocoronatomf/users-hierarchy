@@ -6,7 +6,6 @@ use UserHierarchy\InMemoryCollection\RoleCollection;
 use UserHierarchy\InMemoryCollection\UserCollection;
 use UserHierarchy\Repository\RoleRepository;
 use UserHierarchy\Repository\UserRepository;
-use UserHierarchy\Services\Tree\LoopingThroughTreeAdaptor;
 use UserHierarchy\Services\Tree\RecursiveTreeAdaptor;
 
 $roles = [
@@ -92,7 +91,3 @@ var_dump(count($subordinates) === 3);
 $tree = new RecursiveTreeAdaptor($roleRepository->getAll());
 $subordinates = $userRepository->getSubOrdinates($tree, 5);
 var_dump(count($subordinates) === 0);
-
-$tree = new LoopingThroughTreeAdaptor($roleRepository->getAll());
-$subordinates = $userRepository->getSubOrdinates($tree, 1);
-var_dump(count($subordinates) === 4);

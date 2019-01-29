@@ -1,22 +1,14 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Traits;
 
-use PHPUnit\Framework\TestCase;
 use UserHierarchy\InMemoryCollection\RoleCollection;
 use UserHierarchy\InMemoryCollection\UserCollection;
 use UserHierarchy\Repository\RoleRepository;
 use UserHierarchy\Repository\UserRepository;
-use UserHierarchy\Services\Tree\LoopingThroughTreeAdaptor;
 
-class LoopingTreeAdaptorTest extends TestCase
+trait SeedsData
 {
-    /** @var RoleRepository $repository */
-    private $roleRepository;
-
-    /** @var UserRepository $userRepo*/
-    private $userRepo;
-
     public function setUp(): void
     {
         parent::setUp();
@@ -82,31 +74,7 @@ class LoopingTreeAdaptorTest extends TestCase
 
         $this->userRepo = new UserRepository(new UserCollection);
         $this->userRepo->saveAll($users);
-    }
 
-    /** @test */
-    public function it_should_return_2_subordinate_users()
-    {
-        $adaptor = new LoopingThroughTreeAdaptor($this->roleRepository->getAll());
-
-        $childrenRoles = $this->userRepo->getSubOrdinates($adaptor, 3);
-
-        $this->assertCount(
-            2,
-            $childrenRoles
-        );
-    }
-
-    /** @test */
-    public function it_should_return_4_subordinate_users()
-    {
-        $adaptor = new LoopingThroughTreeAdaptor($this->roleRepository->getAll());
-
-        $users = $this->userRepo->getSubOrdinates($adaptor, 1);
-
-        $this->assertCount(
-            4,
-            $users
-        );
+        $this->adaptor = new $this->adaptorName($this->roleRepository->getAll());
     }
 }

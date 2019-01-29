@@ -8,7 +8,7 @@ use UserHierarchy\Repository\RoleRepository;
 use UserHierarchy\Repository\UserRepository;
 use UserHierarchy\Services\Tree\AdaptorInterface;
 
-class RecursiveTreeAdaptorTest extends TestCase
+class ExternalPackageAdaptorTest extends TestCase
 {
     use SeedsData;
 
@@ -22,7 +22,7 @@ class RecursiveTreeAdaptorTest extends TestCase
     private $adaptor;
 
     /** Name of the adaptor to be used */
-    private $adaptorName = 'UserHierarchy\Services\Tree\RecursiveTreeAdaptor';
+    private $adaptorName = 'UserHierarchy\Services\Tree\ExternalPackageAdaptor';
 
     /** @test */
     public function it_should_return_4_subordinate_users_for_user_no_1()

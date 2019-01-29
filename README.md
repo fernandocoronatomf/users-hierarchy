@@ -2,7 +2,7 @@
 
 This library provides an api to insert roles and users in a hierarchical way
 
-and making it possible to retrieve a user's subordinate users based on their roles
+and makes it possible to retrieve a user's subordinates based on roles
 
 ```php
 
@@ -75,8 +75,8 @@ $userRepository->saveAll($users);
 $tree = new RecursiveTreeAdaptor($roleRepository->getAll());
 $subordinates = $userRepository->getSubOrdinates($tree, 1);
 
-# Using adaptor 2
-$tree = new LoopingThroughTreeAdaptor($roleRepository->getAll());
+# Using adaptor for external package
+$tree = new ExternalPackageAdaptor($roleRepository->getAll());
 $subordinates = $userRepository->getSubOrdinates($tree, 1);
 
 

@@ -27,6 +27,10 @@ class ComposerStaticInit617e74714edbe1c1e2269dc2a9f5a8d4
         array (
             'UserHierarchy\\' => 14,
         ),
+        'T' => 
+        array (
+            'Tests\\' => 6,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
@@ -41,6 +45,10 @@ class ComposerStaticInit617e74714edbe1c1e2269dc2a9f5a8d4
         array (
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
+        ),
+        'B' => 
+        array (
+            'BlueM\\' => 6,
         ),
     );
 
@@ -58,6 +66,10 @@ class ComposerStaticInit617e74714edbe1c1e2269dc2a9f5a8d4
         'UserHierarchy\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -82,6 +94,10 @@ class ComposerStaticInit617e74714edbe1c1e2269dc2a9f5a8d4
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'BlueM\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bluem/tree/src',
         ),
     );
 
