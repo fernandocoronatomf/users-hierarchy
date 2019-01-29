@@ -26,9 +26,28 @@ class RecursiveTreeAdaptor implements AdaptorInterface
 
     /**
      * @param int $parentId
+     * @return AdaptorInterface
+     */
+    public function buildTree(int $parentId): AdaptorInterface
+    {
+        $this->createTree($parentId);
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
-    public function buildTree(int $parentId)
+    public function getAllDescendantsIds(): array
+    {
+        return $this->recursiveFindByKey($this->tree, 'Id');
+    }
+
+    /**
+     * @param $parentId
+     * @return array
+     */
+    private function createTree($parentId): array
     {
         array_walk($this->collection, function ($item) use ($parentId) {
             if ($item['Parent'] === $parentId) {
@@ -41,17 +60,13 @@ class RecursiveTreeAdaptor implements AdaptorInterface
         return $this->tree;
     }
 
-    public function getTreeIds()
-    {
-        return $this->getIds($this->tree);
-    }
 
-    private function getIds($tree)
-    {
-        return $this->recursiveFindByKey($tree, 'Id');
-    }
-
-    private function recursiveFindByKey(array $array, $needle)
+    /**
+     * @param array $array
+     * @param string $needle
+     * @return array
+     */
+    private function recursiveFindByKey(array $array, string $needle): array
     {
         $iterator = new RecursiveArrayIterator($array);
         $recursive = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::SELF_FIRST);
@@ -64,6 +79,7 @@ class RecursiveTreeAdaptor implements AdaptorInterface
             }
             array_push($list, $value);
         }
+
         return $list;
     }
 }

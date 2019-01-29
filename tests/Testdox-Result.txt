@@ -1,3 +1,6 @@
+ArrayDecorator
+ [x] It returns json output
+
 ExternalPackageAdaptor
  [x] It should return 4 subordinate users for user no 1
  [x] It should return 4 subordinate users for user no 2

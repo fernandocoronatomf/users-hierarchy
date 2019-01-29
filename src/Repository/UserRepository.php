@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace UserHierarchy\Repository;
 
+use UserHierarchy\Decorator\ArrayDecorator;
 use UserHierarchy\InMemoryCollection\UserCollection;
 use UserHierarchy\Services\Tree\AdaptorInterface;
 
@@ -23,18 +24,20 @@ class UserRepository extends Repository implements RepositoryInterface, UserHier
     /**
      * @param AdaptorInterface $adaptor
      * @param int $userId
-     * @return array
+     * @return ArrayDecorator
      */
-    public function getSubOrdinates(AdaptorInterface $adaptor, int $userId): array
+    public function getSubOrdinates(AdaptorInterface $adaptor, int $userId): ArrayDecorator
     {
-        $adaptor->buildTree(
-            $this->get($userId)['Role']
-        );
+        $userRoleId = $this->get($userId)['Role'];
 
-        $subordinateRoles = $adaptor->getTreeIds();
+        $subordinateRoleIds = $adaptor
+            ->buildTree($userRoleId)
+            ->getAllDescendantsIds();
 
-        return array_filter($this->getAll(), function ($user) use ($subordinateRoles) {
-            return in_array($user['Role'], $subordinateRoles);
+        $subordinateUsers = array_filter($this->getAll(), function ($user) use ($subordinateRoleIds) {
+            return in_array($user['Role'], $subordinateRoleIds);
         });
+
+        return new ArrayDecorator($subordinateUsers);
     }
 }

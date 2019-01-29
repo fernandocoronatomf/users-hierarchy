@@ -27,18 +27,18 @@ class ExternalPackageAdaptor implements AdaptorInterface
 
     /**
      * @param int $parentId
-     * @return Tree
+     * @return AdaptorInterface
      */
-    public function buildTree(int $parentId)
+    public function buildTree(int $parentId): AdaptorInterface
     {
         $this->parentId = $parentId;
 
         $this->tree = new Tree($this->collection, ['id' => 'Id', 'parent' => 'Parent']);
 
-        return $this->tree;
+        return $this;
     }
 
-    public function getTreeIds()
+    public function getAllDescendantsIds(): array
     {
         $ids = [];
 

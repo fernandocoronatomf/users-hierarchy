@@ -31,7 +31,7 @@ class RecursiveTreeAdaptorTest extends TestCase
 
         $this->assertCount(
             4,
-            $users
+            $users->toArray()
         );
     }
 
@@ -41,18 +41,18 @@ class RecursiveTreeAdaptorTest extends TestCase
         $users = $this->userRepo->getSubOrdinates($this->adaptor, 2);
 
         $this->assertEmpty(
-            $users
+            $users->toArray()
         );
     }
 
     /** @test */
     public function it_should_return_2_subordinate_users_for_user_no_3()
     {
-        $childrenRoles = $this->userRepo->getSubOrdinates($this->adaptor, 3);
+        $users = $this->userRepo->getSubOrdinates($this->adaptor, 3);
 
         $this->assertCount(
             2,
-            $childrenRoles
+            $users->toArray()
         );
     }
 
@@ -63,7 +63,7 @@ class RecursiveTreeAdaptorTest extends TestCase
 
         $this->assertCount(
             3,
-            $users
+            $users->toArray()
         );
     }
 
@@ -73,7 +73,7 @@ class RecursiveTreeAdaptorTest extends TestCase
         $users = $this->userRepo->getSubOrdinates($this->adaptor, 5);
 
         $this->assertEmpty(
-            $users
+            $users->toArray()
         );
     }
 }

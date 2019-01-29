@@ -6,6 +6,7 @@ use UserHierarchy\InMemoryCollection\RoleCollection;
 use UserHierarchy\InMemoryCollection\UserCollection;
 use UserHierarchy\Repository\RoleRepository;
 use UserHierarchy\Repository\UserRepository;
+use UserHierarchy\Services\Tree\ExternalPackageAdaptor;
 use UserHierarchy\Services\Tree\RecursiveTreeAdaptor;
 
 $roles = [
@@ -74,20 +75,30 @@ $userRepository->saveAll($users);
 
 $tree = new RecursiveTreeAdaptor($roleRepository->getAll());
 $subordinates = $userRepository->getSubOrdinates($tree, 1);
-var_dump(count($subordinates) === 4);
+echo 'Adam Admin`s subordinates: <br>';
+echo $subordinates->toJson();
+echo "<br><br>";
 
 $tree = new RecursiveTreeAdaptor($roleRepository->getAll());
 $subordinates = $userRepository->getSubOrdinates($tree, 2);
-var_dump(count($subordinates) === 0);
+echo 'Emily Employee`s subordinates: <br />';
+echo $subordinates->toJson();
+echo "<br><br>";
 
 $tree = new RecursiveTreeAdaptor($roleRepository->getAll());
 $subordinates = $userRepository->getSubOrdinates($tree, 3);
-var_dump(count($subordinates) === 2);
+echo 'Sam Supervisor`s subordinates: <br />';
+echo $subordinates->toJson();
+echo "<br><br>";
 
-$tree = new RecursiveTreeAdaptor($roleRepository->getAll());
+$tree = new ExternalPackageAdaptor($roleRepository->getAll());
 $subordinates = $userRepository->getSubOrdinates($tree, 4);
-var_dump(count($subordinates) === 3);
+echo 'Mary Manager`s subordinates: <br />';
+echo $subordinates->toJson();
+echo "<br><br>";
 
-$tree = new RecursiveTreeAdaptor($roleRepository->getAll());
+$tree = new ExternalPackageAdaptor($roleRepository->getAll());
 $subordinates = $userRepository->getSubOrdinates($tree, 5);
-var_dump(count($subordinates) === 0);
+echo 'Steve Trainees`s subordinates: <br />';
+echo $subordinates->toJson();
+echo "<br><br>";

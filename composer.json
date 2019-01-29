@@ -11,7 +11,8 @@
   ],
   "require": {
     "php": ">=7.2",
-    "bluem/tree": "~2.0"
+    "bluem/tree": "~2.0",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {
