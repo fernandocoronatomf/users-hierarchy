@@ -1,14 +1,14 @@
 {
-  "name": "deputy/challenge",
-  "description": "Deputy Code Challenge",
-  "type": "project",
+  "name": "fernandocoronatomf/users-hierarchy",
+  "homepage": "https://github.com/fernandocoronatomf/users-hierarchy",
+  "description": "Handling Users Hierarchy",
+  "type": "library",
   "authors": [
     {
       "name": "Fernando",
       "email": "fernandocoronatomf@gmail.com"
     }
   ],
-  "minimum-stability": "dev",
   "require": {
     "php": ">=7.2",
     "bluem/tree": "dev-master"
