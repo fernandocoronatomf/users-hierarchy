@@ -26,7 +26,5 @@
   "require-dev": {
     "phpunit/phpunit": "^7",
     "mp091689/dump-die": "dev-master"
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  }
 }
