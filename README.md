@@ -1,6 +1,7 @@
 # How to install
 
 Requirements
+
 PHP 7.2+
 
 git clone https://github.com/fernandocoronatomf/users-hierarchy.git .
@@ -148,9 +149,12 @@ Decided not to use any framework...
 5 - Have endpoints to interact with the service such as 
 
 POST /roles
+
 POST /users
 
 GET /users
+
 GET /users/id
+
 GET /users/id/subordinates
 
