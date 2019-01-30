@@ -146,7 +146,9 @@ Decided not to use any framework...
 
 4 - Improve the tree mechanism
 
-5 - Have endpoints to interact with the service such as 
+5 - Add a validation layer to integrate with save methods
+
+6 - Have endpoints to interact with the service such as 
 
 POST /roles
 
