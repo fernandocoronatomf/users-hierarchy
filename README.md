@@ -5,7 +5,9 @@ Requirements
 PHP 7.2+
 
 git clone https://github.com/fernandocoronatomf/users-hierarchy.git .
+
 or 
+
 Download the zip file @ https://github.com/fernandocoronatomf/users-hierarchy
 
 After downloading it
